@@ -3,7 +3,7 @@
     Inherits="WebApplication2.AgregarUsuario" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-    <!-- Oculta el hero-banner sólo en esta página -->
+    <!-- Oculta el hero-banner sólo en esta páginaaaaaa -->
 <style>
   .hero-wrap { display: none !important; }
 </style>
