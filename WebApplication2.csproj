@@ -342,6 +342,7 @@
   <ItemGroup>
     <Compile Include="AgregarAdopcion.aspx.cs">
       <DependentUpon>AgregarAdopcion.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="AgregarAdopcion.aspx.designer.cs">
       <DependentUpon>AgregarAdopcion.aspx</DependentUpon>
