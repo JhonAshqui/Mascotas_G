@@ -5,7 +5,7 @@ using System.Web.UI.WebControls;
 using MySql.Data.MySqlClient;
 
 namespace WebApplication2
-{//
+{//listausuarios.aspx
     public partial class ListadoUsuario : System.Web.UI.Page
     {
         private readonly string cadena =
