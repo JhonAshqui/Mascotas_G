@@ -448,6 +448,7 @@
     </Compile>
     <Compile Include="ListadoAdopcion.aspx.cs">
       <DependentUpon>ListadoAdopcion.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="ListadoAdopcion.aspx.designer.cs">
       <DependentUpon>ListadoAdopcion.aspx</DependentUpon>
