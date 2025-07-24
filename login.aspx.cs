@@ -42,7 +42,7 @@ namespace WebApplication2
                         }
                     }
                 }
-            }
+            }// Cierre de conexión implícito al usar 'using'
         }
     }
 }
