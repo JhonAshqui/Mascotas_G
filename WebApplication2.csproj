@@ -342,12 +342,14 @@
   <ItemGroup>
     <Compile Include="AgregarAdopcion.aspx.cs">
       <DependentUpon>AgregarAdopcion.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="AgregarAdopcion.aspx.designer.cs">
       <DependentUpon>AgregarAdopcion.aspx</DependentUpon>
     </Compile>
     <Compile Include="AgregarAnimal.aspx.cs">
       <DependentUpon>AgregarAnimal.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="AgregarAnimal.aspx.designer.cs">
       <DependentUpon>AgregarAnimal.aspx</DependentUpon>
@@ -394,6 +396,7 @@
     </Compile>
     <Compile Include="dashboard.aspx.cs">
       <DependentUpon>dashboard.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="dashboard.aspx.designer.cs">
       <DependentUpon>dashboard.aspx</DependentUpon>
@@ -407,12 +410,14 @@
     </Compile>
     <Compile Include="EditarAdopcion.aspx.cs">
       <DependentUpon>EditarAdopcion.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="EditarAdopcion.aspx.designer.cs">
       <DependentUpon>EditarAdopcion.aspx</DependentUpon>
     </Compile>
     <Compile Include="EditarAnimal.aspx.cs">
       <DependentUpon>EditarAnimal.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="EditarAnimal.aspx.designer.cs">
       <DependentUpon>EditarAnimal.aspx</DependentUpon>
@@ -446,12 +451,14 @@
     </Compile>
     <Compile Include="ListadoAdopcion.aspx.cs">
       <DependentUpon>ListadoAdopcion.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="ListadoAdopcion.aspx.designer.cs">
       <DependentUpon>ListadoAdopcion.aspx</DependentUpon>
     </Compile>
     <Compile Include="ListadoAnimal.aspx.cs">
       <DependentUpon>ListadoAnimal.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="ListadoAnimal.aspx.designer.cs">
       <DependentUpon>ListadoAnimal.aspx</DependentUpon>
