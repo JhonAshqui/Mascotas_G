@@ -4,7 +4,7 @@ using MySql.Data.MySqlClient;
 
 namespace WebApplication2
 {
-    public partial class AgregarUsuario : System.Web.UI.Page //asd
+    public partial class AgregarUsuario : System.Web.UI.Page //aspx usuer
     {
         private readonly string cadena =
             ConfigurationManager.ConnectionStrings["conexionDatos"].ConnectionString;
