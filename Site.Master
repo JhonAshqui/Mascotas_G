@@ -1,0 +1,147 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="WebApplication2.SiteMaster" %>
+<!DOCTYPE html>
+<html lang="es">
+<head runat="server">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title><%: Page.Title %> - Refugio de Mascotas</title>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:200,300,400,500,600,700,800&display=swap" rel="stylesheet" />
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <!-- Bootstrap Icons v1.10.5 -->
+<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css"
+/>
+    <!-- jQuery primero -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<!-- Luego DataTables JS y CSS -->
+<link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
+<script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+
+    <!-- Flaticon -->
+    <link rel="stylesheet" href="Fonts/fonts/flaticon/font/flaticon.css" />
+
+    <!-- Estilos -->
+    <link rel="stylesheet" href="Content/css/animate.css" />
+    <link rel="stylesheet" href="Content/css/owl.carousel.min.css" />
+    <link rel="stylesheet" href="Content/css/owl.theme.default.min.css" />
+    <link rel="stylesheet" href="Content/css/magnific-popup.css" />
+    <link rel="stylesheet" href="Content/css/bootstrap-datepicker.css" />
+    <link rel="stylesheet" href="Content/css/jquery.timepicker.css" />
+    <link rel="stylesheet" href="Content/css/style.css" />
+</head>
+<body>
+    <form runat="server">
+        <!-- Cabecera -->
+        <div class="wrap">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6 d-flex align-items-center">
+                        <p class="mb-0 phone pl-md-2">
+                            <a href="#" class="mr-2"><span class="fa fa-phone mr-1"></span> +00 1234 567</a>
+                            <a href="#"><span class="fa fa-paper-plane mr-1"></span> contacto@refugio.com</a>
+                        </p>
+                    </div>
+                    <div class="col-md-6 d-flex justify-content-md-end">
+                        <div class="social-media">
+                            <p class="mb-0 d-flex">
+                                <a href="#" class="d-flex align-items-center justify-content-center"><span class="fa fa-facebook"></span></a>
+                                <a href="#" class="d-flex align-items-center justify-content-center"><span class="fa fa-twitter"></span></a>
+                                <a href="#" class="d-flex align-items-center justify-content-center"><span class="fa fa-instagram"></span></a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Navbar -->
+        <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
+            <div class="container">
+                <a class="navbar-brand" href="dashboard.aspx"><span class="flaticon-pawprint-1 mr-2"></span>Mascotas</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav">
+                    <span class="fa fa-bars"></span> Menú
+                </button>
+                <div class="collapse navbar-collapse" id="ftco-nav">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item"><a href="dashboard.aspx" class="nav-link">Inicio</a></li>
+                        <li class="nav-item"><a href="ListadoRefujio.aspx" class="nav-link">Refugios</a></li>
+                        <li class="nav-item"><a href="ListadoAnimal.aspx" class="nav-link">Animales</a></li>
+                        <li class="nav-item"><a href="ListadoUsuario.aspx" class="nav-link">Usuarios</a></li>
+                        <li class="nav-item"><a href="ListadoAdopcion.aspx" class="nav-link">Adopciones</a></li>
+                        <li class="nav-item"><a href="ListadoDonacion.aspx" class="nav-link">Donaciones</a></li>
+                        <li class="nav-item"><a href="ListadoVoluntario.aspx" class="nav-link">Voluntarios</a></li>
+                        <% if (Session["usuario"] == null) { %>
+                            <li class="nav-item d-flex align-items-center">
+                               <a href="login.aspx" class="nav-link d-flex align-items-center" style="white-space: nowrap;">
+                            <i class="fa fa-sign-in mr-1"></i> Iniciar sesión
+                        </a>
+
+                            </li>
+                        <% } else { %>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" data-toggle="dropdown">
+                                    <i class="fa fa-user-circle"></i> <%= Session["usuario"] %>
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-right">
+                                    <a class="dropdown-item" href="dashboard.aspx">Panel Admin</a>
+                                    <a class="dropdown-item" href="logout.aspx"><i class="fa fa-sign-out"></i> Cerrar sesión</a>
+                                </div>
+                            </li>
+                        <% } %>
+
+                         
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Hero Section -->
+        <section class="hero-wrap js-fullheight" style="background-image: url('<%= ResolveUrl("~/Images/Images/bg_1.jpg") %>');" data-stellar-background-ratio="0.5">
+            <div class="overlay"></div>
+            <div class="container">
+                <div class="row no-gutters slider-text js-fullheight align-items-center justify-content-center">
+                    <div class="col-md-11 text-center">
+                        <h1 class="mb-4">Ayudamos a cada mascota a tener un hogar</h1>
+                        <p><a href="ListadoAdopcion.aspx" class="btn btn-primary px-4 py-3">¡Quiero adoptar!</a></p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+     
+
+        <!-- Contenido dinámico -->
+        <div class="container mt-5 mb-5">
+            <asp:ContentPlaceHolder ID="MainContent" runat="server" />
+        </div>
+
+        <!-- Footer -->
+        <footer class="footer bg-dark text-white py-4">
+            <div class="container text-center">
+                <p class="mb-0">&copy; <%: DateTime.Now.Year %> Refugio de Mascotas. Todos los derechos reservados.</p>
+            </div>
+        </footer>
+    </form>
+
+    <!-- Scripts -->
+  
+    <script src="Scripts/js/jquery-migrate-3.0.1.min.js"></script>
+    <script src="Scripts/js/popper.min.js"></script>
+    <script src="Scripts/js/bootstrap.min.js"></script>
+    <script src="Scripts/js/jquery.easing.1.3.js"></script>
+    <script src="Scripts/js/jquery.waypoints.min.js"></script>
+    <script src="Scripts/js/jquery.stellar.min.js"></script>
+    <script src="Scripts/js/owl.carousel.min.js"></script>
+    <script src="Scripts/js/jquery.magnific-popup.min.js"></script>
+    <script src="Scripts/js/bootstrap-datepicker.js"></script>
+    <script src="Scripts/js/jquery.timepicker.min.js"></script>
+    <script src="Scripts/js/scrollax.min.js"></script>
+    <script src="Scripts/js/main.js"></script>
+</body>
+</html>
