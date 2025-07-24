@@ -416,6 +416,7 @@
     </Compile>
     <Compile Include="EditarAnimal.aspx.cs">
       <DependentUpon>EditarAnimal.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="EditarAnimal.aspx.designer.cs">
       <DependentUpon>EditarAnimal.aspx</DependentUpon>
