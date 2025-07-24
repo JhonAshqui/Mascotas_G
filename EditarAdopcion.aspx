@@ -1,41 +1,47 @@
-﻿<%@ Page Title="Editar Donación" Language="C#" MasterPageFile="~/Site.Master"
-    AutoEventWireup="true" CodeBehind="EditarDonacion.aspx.cs"
-    Inherits="WebApplication2.EditarDonacion" %>
+﻿<%@ Page Title="Editar Adopción" Language="C#" MasterPageFile="~/Site.Master"
+    AutoEventWireup="true" CodeBehind="EditarAdopcion.aspx.cs"
+    Inherits="WebApplication2.EditarAdopcion" %>
 
 <asp:Content ID="C1" ContentPlaceHolderID="MainContent" runat="server">
-     <!-- Oculta el hero-banner sólo en esta página -->
- <style>
-   .hero-wrap { display: none !important; }
- </style>
-  <asp:HiddenField ID="hdnId" runat="server" />
-
+    <!-- Oculta el hero-banner sólo en esta página -->
+<style>
+  .hero-wrap { display: none !important; }
+</style>
   <div class="container" style="max-width:500px; margin-top:2rem;">
-    <h3 class="text-center mb-4">Editar Donación</h3>
+    <h3 class="text-center mb-4">Editar Adopción</h3>
+    <asp:HiddenField ID="hdnId" runat="server" />
 
-    <!-- Donante -->
+    <!-- Animal -->
     <div class="mb-3">
-      <label>Donante:</label>
+      <asp:DropDownList ID="ddlAnimal" runat="server" CssClass="form-select" />
+    </div>
+
+    <!-- Usuario -->
+    <div class="mb-3">
       <asp:DropDownList ID="ddlUsuario" runat="server" CssClass="form-select" />
     </div>
 
-    <!-- Monto -->
-    <div class="mb-3">
-      <label>Monto:</label>
-      <asp:TextBox ID="txtMonto" runat="server" CssClass="form-control" />
-    </div>
-
-    <!-- Descripción -->
-    <div class="mb-3">
-      <label>Descripción:</label>
-      <asp:TextBox ID="txtDescripcion" runat="server" CssClass="form-control" />
-    </div>
-
     <!-- Fecha -->
-    <div class="mb-4">
-      <label>Fecha:</label>
+    <div class="mb-3">
       <asp:TextBox ID="txtFecha" runat="server" CssClass="form-control" />
     </div>
 
+    <!-- Estado -->
+    <div class="mb-3">
+      <asp:DropDownList ID="ddlEstado" runat="server" CssClass="form-select">
+        <asp:ListItem Text="Pendiente" Value="Pendiente" />
+        <asp:ListItem Text="Completa"   Value="Completa" />
+        <asp:ListItem Text="Cancelada"  Value="Cancelada" />
+      </asp:DropDownList>
+    </div>
+
+    <!-- Comentarios -->
+    <div class="mb-4">
+      <asp:TextBox ID="txtComentarios" runat="server" TextMode="MultiLine"
+        CssClass="form-control" Rows="3" />
+    </div>
+
+    <!-- Botones -->
     <div class="text-center">
       <asp:Button ID="btnGuardar" runat="server" CssClass="btn btn-primary me-2"
         Text="Guardar" OnClick="btnGuardar_Click" />
