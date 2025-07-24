@@ -4,7 +4,7 @@ using MySql.Data.MySqlClient;
 
 namespace WebApplication2
 {
-    public partial class EditarDonacion : System.Web.UI.Page
+    public partial class EditarAdopcion : System.Web.UI.Page
     {
         private readonly string cadena =
             ConfigurationManager.ConnectionStrings["conexionDatos"].ConnectionString;
@@ -14,17 +14,26 @@ namespace WebApplication2
             if (!IsPostBack && Request.QueryString["id"] != null)
             {
                 hdnId.Value = Request.QueryString["id"];
-                CargarDonantes();
+                CargarListas();
                 CargarDatos(int.Parse(hdnId.Value));
             }
         }
 
-        private void CargarDonantes()
+        private void CargarListas()
         {
+            // animales
             using (var cn = new MySqlConnection(cadena))
-            using (var cmd = new MySqlCommand(
-                "SELECT id_usuario,nombre FROM usuario " +
-                "WHERE tipo_usuario='Donante' ORDER BY nombre", cn))
+            using (var cmd = new MySqlCommand("SELECT id_animal,nombre FROM animal", cn))
+            {
+                cn.Open();
+                ddlAnimal.DataSource = cmd.ExecuteReader();
+                ddlAnimal.DataTextField = "nombre";
+                ddlAnimal.DataValueField = "id_animal";
+                ddlAnimal.DataBind();
+            }
+            // usuarios
+            using (var cn = new MySqlConnection(cadena))
+            using (var cmd = new MySqlCommand("SELECT id_usuario,nombre FROM usuario", cn))
             {
                 cn.Open();
                 ddlUsuario.DataSource = cmd.ExecuteReader();
@@ -37,7 +46,7 @@ namespace WebApplication2
         private void CargarDatos(int id)
         {
             using (var cn = new MySqlConnection(cadena))
-            using (var cmd = new MySqlCommand("sp_consultar_donacion_por_id", cn))
+            using (var cmd = new MySqlCommand("sp_consultar_adopcion_por_id", cn))
             {
                 cmd.CommandType = System.Data.CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("p_id", id);
@@ -46,11 +55,12 @@ namespace WebApplication2
                 {
                     if (dr.Read())
                     {
+                        ddlAnimal.SelectedValue = dr["id_animal"].ToString();
                         ddlUsuario.SelectedValue = dr["id_usuario"].ToString();
-                        txtMonto.Text = dr["monto"].ToString();
-                        txtDescripcion.Text = dr["descripcion"].ToString();
                         txtFecha.Text = Convert.ToDateTime(
-                            dr["fecha"]).ToString("yyyy-MM-dd");
+                          dr["fecha_adopcion"]).ToString("yyyy-MM-dd");
+                        ddlEstado.SelectedValue = dr["estado"].ToString();
+                        txtComentarios.Text = dr["comentarios"].ToString();
                     }
                 }
             }
@@ -60,22 +70,25 @@ namespace WebApplication2
         {
             int id = int.Parse(hdnId.Value);
             using (var cn = new MySqlConnection(cadena))
-            using (var cmd = new MySqlCommand("sp_actualizar_donacion", cn))
+            using (var cmd = new MySqlCommand("sp_actualizar_adopcion", cn))
             {
                 cmd.CommandType = System.Data.CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("p_id", id);
+                cmd.Parameters.AddWithValue("p_id_animal", ddlAnimal.SelectedValue);
                 cmd.Parameters.AddWithValue("p_id_usuario", ddlUsuario.SelectedValue);
-                cmd.Parameters.AddWithValue("p_monto", txtMonto.Text.Trim());
-                cmd.Parameters.AddWithValue("p_descripcion", txtDescripcion.Text.Trim());
                 cmd.Parameters.AddWithValue("p_fecha", txtFecha.Text.Trim());
+                cmd.Parameters.AddWithValue("p_estado", ddlEstado.SelectedValue);
+                cmd.Parameters.AddWithValue("p_comentarios", txtComentarios.Text.Trim());
+
                 cn.Open();
                 cmd.ExecuteNonQuery();
             }
-            Session["mensaje"] = "Donación actualizada.";
-            Response.Redirect("ListadoDonacion.aspx", true);
+
+            Session["mensaje"] = "Adopción actualizada correctamente.";
+            Response.Redirect("ListadoAdopcion.aspx", true);
         }
 
         protected void btnCancelar_Click(object sender, EventArgs e)
-            => Response.Redirect("ListadoDonacion.aspx", true);
+            => Response.Redirect("ListadoAdopcion.aspx", true);
     }
 }
